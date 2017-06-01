@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ibatorConfiguration PUBLIC "-//Apache Software Foundation//DTD Apache iBATIS Ibator Configuration 1.0//EN" "http://ibatis.apache.org/dtd/ibator-config_1_0.dtd" >
+<ibatorConfiguration>
+	<!-- 这个要改成本地驱动包的位置 -->
+	<classPathEntry location="D:\\mavenLocation\\mysql\\mysql-connector-java\\5.1.13\\mysql-connector-java-5.1.13.jar" />
+	<ibatorContext id="context1">
+		<ibatorPlugin type="org.apache.ibatis.ibator.plugins.SerializablePlugin"/>
+		<ibatorPlugin type="org.apache.ibatis.ibator.plugins.ToStringPlugin" />
+		<ibatorPlugin type="org.apache.ibatis.ibator.plugins.ConstantPlugin" />
+		<!-- 按照实际的去改 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.1.18:3307/bibenet_score" userId="root" password="pw123456" />
+		<!-- 由ibator生成的文件全部放在实际的项目中,api工程下的service和model是本项目要暴露哪些接口来决定的 -->
+		<javaModelGenerator targetPackage="com.bibenet.sso.api.model" targetProject="bibenet.sso.api" />
+		<!-- mapper就放在dao.mapper下,方便代理的时候去扫描 -->
+		<sqlMapGenerator targetPackage="com.bibenet.sso.dao.mapper" targetProject="bibenet.sso" />
+		<daoGenerator targetPackage="com.bibenet.sso.dao" targetProject="bibenet.sso" type="SPRING" />
+		<serviceInterGenerator targetPackage="com.bibenet.sso.service.api" targetProject="bibenet.sso"/>
+		<serviceImplGenerator targetPackage="com.bibenet.sso.service" targetProject="bibenet.sso"/>
+		<controllerGenerator targetPackage="com.bibenet.sso.controller" targetProject="bibenet.sso"/>
+		<table schema="bibenet_score" tableName="t_score_record" domainObjectName="ScoreRecord" generateModel="2">
+			<generatedKey column="OBJECT_ID" sqlStatement="select nextVal('scoreRecord') as objectId"/>
+		</table>
+	</ibatorContext>
+</ibatorConfiguration>

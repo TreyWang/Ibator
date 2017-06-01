@@ -1,5 +1,3 @@
-# Ibator
-
 ## 2017-2-16 根据比比网架构默认配置
     修改模型字段注释为:/** table.column,描述:xxxx*/
     修改默认toString方法生成为：利用org.apache.commons.lang.builder.ToStringBuilder进行反射toString方法；
